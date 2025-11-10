@@ -3,5 +3,8 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "json-server": "^1.0.0-beta.3"
+  },
+  "scripts":{
+    "dev": "nodemon src/server.js"
   }
 }
