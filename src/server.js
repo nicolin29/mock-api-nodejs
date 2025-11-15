@@ -8,6 +8,20 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
+// MIDDLEWARE TO SIMULATE NETWORK DELAY
+// Based on "X-Mock-Delay" header value in milliseconds
+// Default is 1000 ms
+app.use((req, res, next) => {
+  const delay = parseInt(req.headers["x-mock-delay"]) || 1000;
+  res.setHeader("X-Mock-Delay", delay);
+
+  if (delay > 0) {
+    setTimeout(next, delay);
+  } else {
+    next();
+  }
+});
+
 const profile = {
   id: 1,
   name: "John Doe",
